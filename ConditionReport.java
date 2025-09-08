@@ -1,12 +1,12 @@
 import java.util.Date;
 
-public class ConditionReport {
-    private String reportId;
-    private String vehicleId;
-    private String beforePhoto;
-    private String afterPhoto;
-    private Date reportDate;
-    private String damageStatus;
+class ConditionReport {
+    String reportId;
+    String vehicleId;
+    String beforePhoto;
+    String afterPhoto;
+    Date reportDate;
+    String damageStatus;
 
     public ConditionReport(String reportId, String vehicleId, String beforePhoto, Date reportDate) {
         this.reportId = reportId;
@@ -21,37 +21,20 @@ public class ConditionReport {
         this.afterPhoto = afterPhoto;
         this.damageStatus = finalDamageStatus;
         this.reportDate = new Date();
+        System.out.println("Condition Report " + reportId + " finalized with damage status: " + damageStatus);
     }
 
     public void updateDamageStatus(String newStatus) {
         this.damageStatus = newStatus;
+        System.out.println("Damage status for report " + reportId + " updated to: " + damageStatus);
     }
 
-    public String getReportId() {
-        return reportId;
-    }
-
-    public String getVehicleId() {
-        return vehicleId;
-    }
-
-    public String getBeforePhoto() {
-        return beforePhoto;
-    }
-
-    public String getAfterPhoto() {
-        return afterPhoto;
-    }
-
-    public Date getReportDate() {
-        return reportDate;
-    }
-
-    public String getDamageStatus() {
-        return damageStatus;
-    }
-
-    public void setAfterPhoto(String afterPhoto) {
-        this.afterPhoto = afterPhoto;
+    public void displayReport() {
+        System.out.println("Condition Report ID: " + reportId +
+                           ", Vehicle ID: " + vehicleId +
+                           ", Before Photo: " + beforePhoto +
+                           ", After Photo: " + afterPhoto +
+                           ", Report Date: " + reportDate +
+                           ", Damage Status: " + damageStatus);
     }
 }
