@@ -1,19 +1,16 @@
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
-public class Booking {
-    private String bookingId;
-    private String vehicleId;
-    private String customerId; 
-    private String ownerId; 
-    private Date startDate;
-    private Date endDate;
-    private String pickupLocation;
-    private String returnLocation;
-    private String status;
+class Booking {
+    String bookingId;
+    String vehicleId;
+    String customerId;
+    String ownerId;
+    String startDate;
+    String endDate;
+    String pickupLocation;
+    String returnLocation;
+    String status;
 
     public Booking(String bookingId, String vehicleId, String customerId, String ownerId,
-                   Date startDate, Date endDate, String pickupLocation, String returnLocation) {
+                   String startDate, String endDate, String pickupLocation, String returnLocation, String status) {
         this.bookingId = bookingId;
         this.vehicleId = vehicleId;
         this.customerId = customerId;
@@ -22,12 +19,12 @@ public class Booking {
         this.endDate = endDate;
         this.pickupLocation = pickupLocation;
         this.returnLocation = returnLocation;
-        this.status = "PENDING";
+        this.status = status;
     }
 
     public void confirmBooking() {
-        if ("PENDING".equals(this.status)) {
-            this.status = "CONFIRMED";
+        if ("Pending".equalsIgnoreCase(this.status)) {
+            this.status = "Confirmed";
             System.out.println("Booking " + bookingId + " confirmed.");
         } else {
             System.out.println("Cannot confirm booking. Current status: " + this.status);
@@ -35,8 +32,8 @@ public class Booking {
     }
 
     public void completeBooking() {
-        if ("CONFIRMED".equals(this.status)) {
-            this.status = "COMPLETED";
+        if ("Confirmed".equalsIgnoreCase(this.status)) {
+            this.status = "Completed";
             System.out.println("Booking " + bookingId + " completed.");
         } else {
             System.out.println("Cannot complete booking. Current status: " + this.status);
@@ -44,20 +41,19 @@ public class Booking {
     }
 
     public void raiseDispute() {
-        if ("COMPLETED".equals(this.status)) {
-            this.status = "DISPUTE";
+        if ("Completed".equalsIgnoreCase(this.status)) {
+            this.status = "Dispute";
             System.out.println("Dispute raised for booking " + bookingId + ".");
         } else {
             System.out.println("Can only raise a dispute for a completed booking. Current status: " + this.status);
         }
     }
 
-    public String getBookingId() { return bookingId; }
-    public String getVehicleId() { return vehicleId; }
-    public String getCustomerId() { return customerId; }
-    public String getOwnerId() { return ownerId; }
-    public String getStatus() { return status; }
-    public Date getStartDate() { return startDate; }
-    public Date getEndDate() { return endDate; }
-   
+    public void viewBookingDetails() {
+        System.out.println("Booking ID: " + bookingId + ", Vehicle ID: " + vehicleId +
+                           ", Customer ID: " + customerId + ", Owner ID: " + ownerId +
+                           ", From: " + startDate + " To: " + endDate +
+                           ", Pickup: " + pickupLocation + ", Return: " + returnLocation +
+                           ", Status: " + status);
+    }
 }
